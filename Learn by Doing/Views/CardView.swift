@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     // MARK: - PROPERTIES
-    let gradient: [Color] = [.color01, .color02]
+    let card: Card
     
     // MARK: - FUNCTIONS
     // MARK: - BODY
@@ -17,12 +17,12 @@ struct CardView: View {
             VStack {
                 VStack {
                     VStack {
-                        Text("SwiftUI")
+                        Text(card.title)
                             .font(.largeTitle)
                             .fontWeight(.heavy)
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white)
-                        Text("Better apps. Less code.")
+                        Text(card.headline)
                             .foregroundStyle(.white)
                             .fontWeight(.light)
                             .italic()
@@ -34,7 +34,7 @@ struct CardView: View {
                         
                     } label: {
                         HStack {
-                            Text("Learn".uppercased())
+                            Text(card.callToAction.uppercased())
                                 .fontWeight(.heavy)
                                 .foregroundStyle(.white)
                             .tint(.white)
@@ -46,7 +46,7 @@ struct CardView: View {
                         .padding(.vertical, 10)
                         .padding(.horizontal, 24)
                         .background(
-                            LinearGradient(colors: gradient, startPoint: .leading, endPoint: .trailing)
+                            LinearGradient(colors: card.gradientColors, startPoint: .leading, endPoint: .trailing)
                         )
                         .clipShape(Capsule())
                         .shadow(color: .accent, radius: 6, x: 0, y: 3)
@@ -56,8 +56,8 @@ struct CardView: View {
                 .padding(.bottom, 40)
             }
             .frame(width: 335, height: 545, alignment: .center)
-            .background(Image("developer-no1"))
-            .background(LinearGradient(colors: gradient, startPoint: .top, endPoint: .bottom))
+            .background(Image(card.imageName))
+            .background(LinearGradient(colors: card.gradientColors, startPoint: .top, endPoint: .bottom))
             .clipShape(.rect(cornerRadius: 16))
             .shadow(radius: 8)
     }
@@ -65,6 +65,6 @@ struct CardView: View {
 
 // MARK: - PREVIEW
 #Preview(traits: .sizeThatFitsLayout) {
-    CardView()
+    CardView(card: cardData[5])
         .padding()
 }
