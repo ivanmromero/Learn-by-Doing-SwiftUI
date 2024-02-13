@@ -62,6 +62,7 @@
 		D2FF74D92B7BDC300088627C /* Learn by Doing */ = {
 			isa = PBXGroup;
 			children = (
+				D2FF74F72B7BF5740088627C /* PlaySound.swift */,
 				D2FF74F52B7BF53D0088627C /* sound-chime.mp3 */,
 				D2FF74F22B7BF2650088627C /* Data */,
 				D2FF74EF2B7BF0F30088627C /* Models */,
@@ -70,7 +71,6 @@
 				D2FF74EC2B7BE6350088627C /* Views */,
 				D2FF74DE2B7BDC360088627C /* Assets.xcassets */,
 				D2FF74E02B7BDC360088627C /* Preview Content */,
-				D2FF74F72B7BF5740088627C /* PlaySound.swift */,
 			);
 			path = "Learn by Doing";
 			sourceTree = "<group>";

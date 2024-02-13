@@ -10,6 +10,9 @@ import SwiftUI
 struct CardView: View {
     // MARK: - PROPERTIES
     let card: Card
+    @State private var fadeIn: Bool = false
+    @State private var moveDownward: Bool = false
+    @State private var moveUpward: Bool = false
     
     // MARK: - FUNCTIONS
     // MARK: - BODY
@@ -27,6 +30,7 @@ struct CardView: View {
                             .fontWeight(.light)
                             .italic()
                     }
+                    .offset(y: moveDownward ? 0 : -30)
                     
                     Spacer()
                     
@@ -51,15 +55,28 @@ struct CardView: View {
                         .clipShape(Capsule())
                         .shadow(color: .accent, radius: 6, x: 0, y: 3)
                     }
+                    .offset(y: moveUpward ? 0 : 30)
                 }
                 .padding(.top, 25)
                 .padding(.bottom, 40)
             }
             .frame(width: 335, height: 545, alignment: .center)
-            .background(Image(card.imageName))
+            .background(
+                Image(card.imageName)
+                    .opacity(fadeIn ? 1 : 0)
+            )
             .background(LinearGradient(colors: card.gradientColors, startPoint: .top, endPoint: .bottom))
             .clipShape(.rect(cornerRadius: 16))
             .shadow(radius: 8)
+            .onAppear(perform: {
+                withAnimation(.linear(duration: 1.2)) {
+                    fadeIn.toggle()
+                }
+                withAnimation(.linear(duration: 0.8)) {
+                    moveDownward.toggle()
+                    moveUpward.toggle()
+                }
+            })
     }
 }
 
